@@ -23,7 +23,7 @@ def get_variable_from_polynomial_equation(s):
         s,
     )
     # Add 1 as exponent for x
-    s = re.sub(r"(x(?!\^))", "\\1^1", s)
+    s = re.sub(r"(x(?!\^))", r"\1^1", s)
     # Add 1 as factor when x is alone
     s = re.sub(r"((?:(?<=[+-])|^)x)", "1x", s)
 
