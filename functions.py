@@ -2,6 +2,14 @@ import re
 
 
 def get_variable_from_polynomial_equation(s):
+    """Get factor and exponent from a polynomial equation in a dict
+
+    Args:
+        s (string): polynomial equation
+
+    Returns:
+        dict: return variables in a dynamic form as shown : {max exponent: factor, .... , constant(or 0 exponent): factor}
+    """
     dict = {
         8304: "0",
         185: "1",
@@ -14,16 +22,20 @@ def get_variable_from_polynomial_equation(s):
         8312: "8",
         8313: "9",
     }
+    
     # Remove spaces
     s = re.sub(r"\s", "", s)
+    
     # Replace exponents by ^ format
     s = re.sub(
         r"([⁰¹²³⁴⁵⁶⁷⁸⁹]+)",
         lambda x: f"""^{''.join([dict[ord(i)] for i in x.group()])}""",
         s,
     )
+    
     # Add 1 as exponent for x
     s = re.sub(r"(x(?!\^))", r"\1^1", s)
+    
     # Add 1 as factor when x is alone
     s = re.sub(r"((?:(?<=[+-])|^)x)", "1x", s)
 
@@ -45,5 +57,4 @@ def get_variable_from_polynomial_equation(s):
     if const != 0:
         dict[0] = const
 
-    # return variables in a dynamic form as shown : {max exponent: factor, .... , constant(or 0 exponent): factor}
     return dict

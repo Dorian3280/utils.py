@@ -1,1 +1,1 @@
-non-exhaustive list of functions that can help once in a lifetime
+non-exhaustive list of functions and scripts that can help once in a lifetime
